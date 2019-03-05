@@ -1,0 +1,14 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "a translate",
+  "main": "index.js",
+  "author": "jxc",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "md5": "^2.2.1",
+    "request": "^2.88.0"
+  }
+}
