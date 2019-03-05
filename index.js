@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const urlencode = require("urlencode");
 const md5 = require("md5");
 const app = express();
 const request = require("request");
@@ -23,6 +24,9 @@ const sendHtml = (path, response) => {
 
 const baiduTranslate = (data, res) => {
   let { q, from, to } = data;
+  // 百度翻译api的要求， 中文需要encode
+  // q = urlencode(q);
+  console.log("ques", q);
   const appid = "20190305000273827";
   const salt = "hello233";
   const key = "I3tTuR3OtgmOjKzehLb4";
@@ -30,7 +34,8 @@ const baiduTranslate = (data, res) => {
   // appid + q + salt + 密钥
   let sign = md5(appid + q + salt + key);
   // 比较笨的写法， 可以考虑把这里改成函数
-  const url = `${baseUrl}?q=${q}&from=${from}&to=${to}&appid=${appid}&salt=${salt}&sign=${sign}`;
+  let code = urlencode(q);
+  let url = `${baseUrl}?q=${code}&from=${from}&to=${to}&appid=${appid}&salt=${salt}&sign=${sign}`;
   request(url, (error, response, body) => {
     console.log("body", body);
     res.send(body);

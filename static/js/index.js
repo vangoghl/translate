@@ -42,6 +42,8 @@ const bindSwap = () => {
   bind(".swap", "click", () => {
     // 找到中文的元素
     let zh = e(".zh");
+    let en = e(".en");
+
     // 把文字换成英文
     zh.innerText = "英文";
     // 加上en的样式
@@ -49,11 +51,10 @@ const bindSwap = () => {
     // 去掉ch的样式
     zh.classList.remove("zh");
     // 同上
-    let en = e(".en");
     en.innerText = "中文";
     en.classList.add("zh");
     en.classList.remove("en");
-
+    // 修改 from 和 to 的值
     if (translateData.from === "zh") {
       translateData.from = "en";
     } else {
@@ -65,6 +66,8 @@ const bindSwap = () => {
     } else {
       translateData.to = "zh";
     }
+    // 切换语言后， 也要发请求
+    apiTranslate(translateData);
   });
 };
 
