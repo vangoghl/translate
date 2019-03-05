@@ -4,11 +4,10 @@ const md5 = require("md5");
 const app = express();
 const request = require("request");
 app.use(bodyParser.json());
+const port = 4000;
 
 // 配置静态文件目录
 app.use(express.static("static"));
-
-const port = 4000;
 
 const sendHtml = (path, response) => {
   var fs = require("fs");
@@ -39,9 +38,7 @@ const baiduTranslate = (data, res) => {
 };
 
 app.get("/", (req, res) => {
-  let path = "template/index.html";
   sendHtml("index.html", res);
-  // res.send("Hello World!");
 });
 
 app.post("/translate/", (req, res) => {
