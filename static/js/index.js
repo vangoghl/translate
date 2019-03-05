@@ -85,6 +85,7 @@ const bindEnter = () => {
     let key = e.key;
     // 如果按下的是Enter就发送翻译的请求
     if (key === "Enter") {
+      e.preventDefault();
       apiTranslate(translateData);
     }
   });
