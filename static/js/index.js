@@ -54,6 +54,7 @@ const bindSwap = () => {
     en.innerText = "中文";
     en.classList.add("zh");
     en.classList.remove("en");
+
     // 修改 from 和 to 的值
     if (translateData.from === "zh") {
       translateData.from = "en";

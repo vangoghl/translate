@@ -6,3 +6,7 @@ const bind = (selector, eventName, callback) => {
   let element = e(selector);
   element.addEventListener(eventName, callback);
 };
+
+// const let var
+// let a
+// let a

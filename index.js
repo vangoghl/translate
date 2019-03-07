@@ -23,18 +23,20 @@ const sendHtml = (path, response) => {
 };
 
 const baiduTranslate = (data, res) => {
+  // http://api.fanyi.baidu.com/api/trans/product/apidoc
   let { q, from, to } = data;
   // 百度翻译api的要求， 中文需要encode
   // q = urlencode(q);
   console.log("ques", q);
   const appid = "20190305000273827";
-  const salt = "hello233";
   const key = "I3tTuR3OtgmOjKzehLb4";
   const baseUrl = "http://api.fanyi.baidu.com/api/trans/vip/translate";
+
+  const salt = "hello233";
   // appid + q + salt + 密钥
   let sign = md5(appid + q + salt + key);
-  // 比较笨的写法， 可以考虑把这里改成函数
   let code = urlencode(q);
+  // 比较笨的写法， 可以考虑把这里改成函数
   let url = `${baseUrl}?q=${code}&from=${from}&to=${to}&appid=${appid}&salt=${salt}&sign=${sign}`;
   request(url, (error, response, body) => {
     console.log("body", body);
@@ -42,6 +44,7 @@ const baiduTranslate = (data, res) => {
   });
 };
 
+// 当浏览器访问访问 '/'的 路径（GET）,就会触发下面的回调函数
 app.get("/", (req, res) => {
   sendHtml("index.html", res);
 });
@@ -52,4 +55,6 @@ app.post("/translate/", (req, res) => {
   baiduTranslate(body, res);
 });
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}!`);
+});
