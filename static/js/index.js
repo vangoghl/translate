@@ -1,7 +1,7 @@
 let translateData = {
   from: "en",
   to: "zh",
-  q: ""
+  q: "",
 };
 
 const templates = trans => {
