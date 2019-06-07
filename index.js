@@ -44,7 +44,7 @@ const baiduTranslate = (data, res) => {
   });
 };
 
-// 当浏览器访问访问 '/'的 路径（GET）,就会触发下面的回调函数
+// 当浏览器访问访问 '/'的 路径（GET）,就会触发下面的回调函数.
 app.get("/", (req, res) => {
   sendHtml("index.html", res);
 });
